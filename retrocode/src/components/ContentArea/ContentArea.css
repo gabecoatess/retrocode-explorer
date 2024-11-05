@@ -1,0 +1,30 @@
+.content-area {
+	background: var(--bg-secondary);
+	border: 1px solid var(--border);
+	padding: 8px;
+	height: 100%;
+}
+
+.content-area textarea {
+	width: 100%;
+	height: 100%;
+	background: var(--bg-tertiary);
+	color: var(--text-primary);
+	border: 1px solid var(--border);
+	padding: 10px;
+	resize: none;
+	font-size: 14px;
+	line-height: 1.4;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
+.content-area textarea:focus {
+	outline: none;
+	border-color: var(--highlight);
+}
+
+.content-area textarea:disabled {
+	background: var(--bg-tertiary);
+	color: #808080;
+	cursor: default;
+}

@@ -1,0 +1,14 @@
+.main-content {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 4px;
+	flex: 1;
+	height: 100%;
+  }
+  
+  @media (max-width: 768px) {
+	.main-content {
+	  grid-template-columns: 1fr;
+	  grid-template-rows: auto 1fr;
+	}
+  }

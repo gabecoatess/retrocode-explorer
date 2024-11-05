@@ -1,13 +1,15 @@
 import './App.css';
 
+import TopBar from './components/TopBar/TopBar';
+import MainContent from './components/MainContent/MainContent';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello, GitHub!</h1>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<TopBar />
+			<MainContent />
+		</div>
+	);
 }
 
 export default App;

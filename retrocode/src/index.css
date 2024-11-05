@@ -1,13 +1,54 @@
+:root {
+	--bg-primary: #1a1a1a;
+	--bg-secondary: #252525;
+	--bg-tertiary: #2d2d2d;
+	--text-primary: #e0e0e0;
+	--text-secondary: #b0b0b0;
+	--accent-1: #303030;
+	--accent-2: #404040;
+	--border: #505050;
+	--highlight: #3a5670;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+button {
+	background: linear-gradient(180deg, var(--accent-1), var(--bg-tertiary));
+	color: var(--text-primary);
+	border: 1px solid var(--border);
+	padding: 6px 12px;
+	cursor: pointer;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+button:hover {
+	background: linear-gradient(180deg, var(--highlight), var(--accent-1));
+	border-color: var(--highlight);
 }
