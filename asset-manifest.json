@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/retrocode/static/css/main.e6c13ad2.css",
+    "main.js": "/retrocode/static/js/main.e09d8a8f.js",
+    "static/js/453.a9ef0e6c.chunk.js": "/retrocode/static/js/453.a9ef0e6c.chunk.js",
+    "index.html": "/retrocode/index.html",
+    "main.e6c13ad2.css.map": "/retrocode/static/css/main.e6c13ad2.css.map",
+    "main.e09d8a8f.js.map": "/retrocode/static/js/main.e09d8a8f.js.map",
+    "453.a9ef0e6c.chunk.js.map": "/retrocode/static/js/453.a9ef0e6c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.e09d8a8f.js"
+  ]
+}
