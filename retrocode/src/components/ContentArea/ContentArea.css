@@ -3,6 +3,8 @@
 	border: 1px solid var(--border);
 	padding: 8px;
 	height: 100%;
+	position: relative;
+	overflow: hidden; /* P350a */
 }
 
 .content-area textarea {
@@ -16,6 +18,8 @@
 	font-size: 14px;
 	line-height: 1.4;
 	font-family: "Lucida Console", Monaco, monospace;
+	position: relative;
+	z-index: 1;
 }
 
 .content-area textarea:focus {
@@ -27,4 +31,25 @@
 	background: var(--bg-tertiary);
 	color: #808080;
 	cursor: default;
+}
+
+.content-area .svg-icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	opacity: 0.2; /* P7b69 */
+	z-index: 0;
+	animation: rotate 60s linear infinite;
+	fill: #404040; /* P7b69 */
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
