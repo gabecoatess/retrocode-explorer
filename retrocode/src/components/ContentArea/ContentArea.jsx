@@ -20,8 +20,8 @@ const ContentArea = ({ selectedItem, onContentChange }) => {
 
     return (
         <div className="content-area">
-            <div className="content-wrapper"> {/* Pf1bb */}
-                <FaintIcon className="svg-icon" /> {/* P4190 */}
+            <div className="content-wrapper">
+                <FaintIcon className="svg-icon" />
                 <textarea
                     value={content}
                     onChange={handleChange}
@@ -30,7 +30,7 @@ const ContentArea = ({ selectedItem, onContentChange }) => {
                         : "Select a file or folder to begin editing..."}
                     disabled={!selectedItem}
                 />
-            </div> {/* Pf1bb */}
+            </div>
         </div>
     );
 };
