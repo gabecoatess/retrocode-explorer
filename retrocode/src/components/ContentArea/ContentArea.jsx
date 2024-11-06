@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ContentArea.css';
+import { ReactComponent as FaintIcon } from './faint-icon.svg'; // Pae40
 
 const ContentArea = ({ selectedItem, onContentChange }) => {
     const [content, setContent] = useState('');
@@ -19,14 +20,17 @@ const ContentArea = ({ selectedItem, onContentChange }) => {
 
     return (
         <div className="content-area">
-            <textarea
-                value={content}
-                onChange={handleChange}
-                placeholder={selectedItem
-                    ? `Editing: ${selectedItem.name}`
-                    : "Select a file or folder to begin editing..."}
-                disabled={!selectedItem}
-            />
+            <div className="content-wrapper"> {/* Pf1bb */}
+                <FaintIcon className="svg-icon" /> {/* P4190 */}
+                <textarea
+                    value={content}
+                    onChange={handleChange}
+                    placeholder={selectedItem
+                        ? `Editing: ${selectedItem.name}`
+                        : "Select a file or folder to begin editing..."}
+                    disabled={!selectedItem}
+                />
+            </div> {/* Pf1bb */}
         </div>
     );
 };
