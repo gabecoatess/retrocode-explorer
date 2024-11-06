@@ -71,6 +71,11 @@
 		gap: 16px;
 		width: 100%;
 	}
+	
+	.header-right {
+			gap: 4px;
+			flex-direction: column;
+		}
 
 	.header-info {
 		text-align: center;
@@ -81,7 +86,7 @@
 	}
 
 	button {
-		padding: 16px;
+		padding: 8px;
 	}
 }
 
