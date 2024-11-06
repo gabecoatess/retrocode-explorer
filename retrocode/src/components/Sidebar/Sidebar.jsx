@@ -11,23 +11,23 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 	const [hoveredItem, setHoveredItem] = useState(null);
 
 	const generateHierarchyString = (items, level = 0) => {
-        let result = '';
-        const indent = '\t'.repeat(level);
+		let result = '';
+		const indent = '\t'.repeat(level);
 
-        items.forEach(item => {
-            result += `${indent}${item.type === 'folder' ? '📁' : '📄'} ${item.name}\n`;
-            if (item.children) {
-                result += generateHierarchyString(item.children, level + 1);
-            }
-        });
+		items.forEach(item => {
+			result += `${indent}${item.type === 'folder' ? '📁' : '📄'} ${item.name}\n`;
+			if (item.children) {
+				result += generateHierarchyString(item.children, level + 1);
+			}
+		});
 
-        return result;
-    };
+		return result;
+	};
 
-    const handleExportClick = () => {
-        const hierarchyString = `Project Hierarchy\n${generateHierarchyString(fileStructure)}`;
-        onExport(hierarchyString);
-    };
+	const handleExportClick = () => {
+		const hierarchyString = `Project Hierarchy\n${generateHierarchyString(fileStructure)}`;
+		onExport(hierarchyString);
+	};
 
 	const toggleFolder = (id, e) => {
 		e.stopPropagation();
@@ -94,7 +94,7 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 			content: '',
 			children: []
 		};
-		setFileStructure(prev => [...prev, newFolder]);
+		setFileStructure(prev => sortItems([...prev, newFolder]));
 	};
 
 	const handleNewFile = () => {
@@ -104,7 +104,7 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 			name: 'new-file.txt',
 			content: ''
 		};
-		setFileStructure(prev => [...prev, newFile]);
+		setFileStructure(prev => sortItems([...prev, newFile]));
 	};
 
 	const findAndRemoveItem = (items, itemId) => {
@@ -160,8 +160,8 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 		setFileStructure(prevStructure => {
 			const newStructure = JSON.parse(JSON.stringify(prevStructure));
 			const draggedItemCopy = findAndRemoveItem(newStructure, draggedItem.id);
-			
-			return [...newStructure, draggedItemCopy];
+
+			return sortItems([...newStructure, draggedItemCopy]);
 		});
 	};
 
@@ -178,7 +178,7 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 			const draggedItemCopy = findAndRemoveItem(newStructure, draggedItem.id);
 
 			const addToTarget = (items) => {
-				return items.map(item => {
+				return sortItems(items.map(item => {
 					if (item.id === targetItem.id) {
 						return {
 							...item,
@@ -193,7 +193,7 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 						};
 					}
 					return item;
-				});
+				}));
 			};
 
 			return addToTarget(newStructure);
@@ -206,43 +206,43 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 	}
 
 	const handleDelete = (e, itemId) => {
-        e.stopPropagation();
-        setFileStructure(prevStructure => {
-            const deleteItem = (items) => {
-                return items.filter(item => {
-                    if (item.id === itemId) return false;
-                    if (item.children) {
-                        item.children = deleteItem(item.children);
-                    }
-                    return true;
-                });
-            };
-            return deleteItem([...prevStructure]);
-        });
-    };
+		e.stopPropagation();
+		setFileStructure(prevStructure => {
+			const deleteItem = (items) => {
+				return items.filter(item => {
+					if (item.id === itemId) return false;
+					if (item.children) {
+						item.children = deleteItem(item.children);
+					}
+					return true;
+				});
+			};
+			return deleteItem([...prevStructure]);
+		});
+	};
 
 	const handleNameChange = (e, item) => {
-        e.stopPropagation();
-        const newName = e.target.value;
-        setFileStructure(prevStructure => {
-            const updateName = (items) => {
-                return items.map(i => {
-                    if (i.id === item.id) {
-                        return { ...i, name: newName };
-                    }
-                    if (i.children) {
-                        return { ...i, children: updateName(i.children) };
-                    }
-                    return i;
-                });
-            };
-            return updateName([...prevStructure]);
-        });
-    };
+		e.stopPropagation();
+		const newName = e.target.value;
+		setFileStructure(prevStructure => {
+			const updateName = (items) => {
+				return sortItems(items.map(i => {
+					if (i.id === item.id) {
+						return { ...i, name: newName };
+					}
+					if (i.children) {
+						return { ...i, children: updateName(i.children) };
+					}
+					return i;
+				}));
+			};
+			return updateName([...prevStructure]);
+		});
+	};
 
 	const handleNameBlur = () => {
-        setEditingItem(null);
-    };
+		setEditingItem(null);
+	};
 
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
@@ -250,10 +250,29 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 		}
 	}
 
+	const sortItems = (items) => {
+		return [...items].sort((a, b) => {
+			if (a.type === b.type) {
+				return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+			}
+
+			return a.type === 'folder' ? -1 : 1;
+		}).map(item => {
+			if (item.children) {
+				return {
+					...item,
+					children: sortItems(item.children)
+				};
+			}
+
+			return item;
+		});
+	};
+
 	const renderItem = (item) => {
 		const isEditing = editingItem?.id === item.id;
 		const isHovered = hoveredItem?.id === item.id;
-		
+
 		const itemContent = (
 			<>
 				<span className="icon">
@@ -305,11 +324,12 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 				>
 					<div
 						className={`item ${selectedItem?.id === item.id ? 'selected' : ''}`}
-						onClick={(e) => handleSelection(item, e)}
+						onClick={(e) => {
+							handleSelection(item, e);
+							toggleFolder(item.id, e);
+						}}
 					>
-						<span className="folder-toggle" onClick={(e) => toggleFolder(item.id, e)}>
-							{itemContent}
-						</span>
+						{itemContent}
 					</div>
 					{item.isOpen && item.children && (
 						<div className="directory">
@@ -342,11 +362,11 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 				<button onClick={handleNewFile}>New File</button>
 				<button onClick={handleExportClick}>Export Hierarchy</button>
 			</div>
-			<div className={`file-explorer ${dragOverContainer ? `drag-over`: ''}`}
+			<div className={`file-explorer ${dragOverContainer ? `drag-over` : ''}`}
 				onDragOver={handleDragOver}
 				onDragLeave={handleDragLeave}
 				onDrop={handleContainerDrop}>
-				{fileStructure.map(item => renderItem(item))}
+				{sortItems(fileStructure).map(item => renderItem(item))}
 			</div>
 		</div>
 	);
