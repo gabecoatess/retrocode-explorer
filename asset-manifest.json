@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/retrocode-explorer/static/css/main.75a2e251.css",
+    "main.css": "/retrocode-explorer/static/css/main.13aaa535.css",
     "main.js": "/retrocode-explorer/static/js/main.ce8c5535.js",
     "static/js/453.a9ef0e6c.chunk.js": "/retrocode-explorer/static/js/453.a9ef0e6c.chunk.js",
     "index.html": "/retrocode-explorer/index.html",
-    "main.75a2e251.css.map": "/retrocode-explorer/static/css/main.75a2e251.css.map",
+    "main.13aaa535.css.map": "/retrocode-explorer/static/css/main.13aaa535.css.map",
     "main.ce8c5535.js.map": "/retrocode-explorer/static/js/main.ce8c5535.js.map",
     "453.a9ef0e6c.chunk.js.map": "/retrocode-explorer/static/js/453.a9ef0e6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.75a2e251.css",
+    "static/css/main.13aaa535.css",
     "static/js/main.ce8c5535.js"
   ]
 }
