@@ -2,7 +2,12 @@ import React from 'react';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
 import './TopBar.css';
 
-const TopBar = () => {
+const TopBar = ({ onExport }) => {
+	const handleExportClick = () => {
+		const exportData = 'Exported Data';
+		onExport(exportData);
+	};
+
 	return (
 		<div className="header">
 			<div className="header-left">
@@ -34,7 +39,7 @@ const TopBar = () => {
 			</div>
 
 			<div className="header-right">
-				<button onClick={() => console.log("Export All clicked")}>
+				<button onClick={handleExportClick}>
 					Export All
 				</button>
 			</div>
