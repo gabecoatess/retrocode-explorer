@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/retrocode-explorer/static/css/main.13aaa535.css",
-    "main.js": "/retrocode-explorer/static/js/main.ce8c5535.js",
+    "main.css": "/retrocode-explorer/static/css/main.9cf56445.css",
+    "main.js": "/retrocode-explorer/static/js/main.39b3ee30.js",
     "static/js/453.a9ef0e6c.chunk.js": "/retrocode-explorer/static/js/453.a9ef0e6c.chunk.js",
+    "static/media/faint-icon.svg": "/retrocode-explorer/static/media/faint-icon.193714bffb88b5fce37116cfd1c11e8e.svg",
     "index.html": "/retrocode-explorer/index.html",
-    "main.13aaa535.css.map": "/retrocode-explorer/static/css/main.13aaa535.css.map",
-    "main.ce8c5535.js.map": "/retrocode-explorer/static/js/main.ce8c5535.js.map",
+    "main.9cf56445.css.map": "/retrocode-explorer/static/css/main.9cf56445.css.map",
+    "main.39b3ee30.js.map": "/retrocode-explorer/static/js/main.39b3ee30.js.map",
     "453.a9ef0e6c.chunk.js.map": "/retrocode-explorer/static/js/453.a9ef0e6c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.13aaa535.css",
-    "static/js/main.ce8c5535.js"
+    "static/css/main.9cf56445.css",
+    "static/js/main.39b3ee30.js"
   ]
 }
