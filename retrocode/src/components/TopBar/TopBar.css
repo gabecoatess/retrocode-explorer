@@ -73,9 +73,13 @@
 	}
 	
 	.header-right {
-			gap: 4px;
-			flex-direction: column;
-		}
+		gap: 4px;
+		flex-direction: column;
+	}
+
+	.header-right button {
+		width: 100%;
+	}
 
 	.header-info {
 		text-align: center;
