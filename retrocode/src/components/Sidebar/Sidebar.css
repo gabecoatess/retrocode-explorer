@@ -15,6 +15,11 @@
     gap: 8px;
 }
 
+.export-container {
+	display: flex;
+	gap: 8px;
+}
+
 .button-container button {
     background: linear-gradient(180deg, var(--accent-1), var(--bg-tertiary));
     color: var(--text-primary);

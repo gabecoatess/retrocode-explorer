@@ -29,6 +29,11 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 		onExport(hierarchyString);
 	};
 
+	const handleCopyClick = () => {
+		const hierarchyString = generateHierarchyString(fileStructure);
+		navigator.clipboard.writeText(hierarchyString);
+	}
+
 	const toggleFolder = (id, e) => {
 		e.stopPropagation();
 		setFileStructure(prevStructure => {
@@ -360,7 +365,10 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileS
 			<div className="button-container">
 				<button onClick={handleNewDirectory}>New Directory</button>
 				<button onClick={handleNewFile}>New File</button>
-				<button onClick={handleExportClick}>Export Hierarchy</button>
+				<div className="export-container">
+					<button onClick={handleExportClick}>Export Hierarchy</button>
+					<button onClick={handleCopyClick}>Copy Hierarchy</button>
+				</div>
 			</div>
 			<div className={`file-explorer ${dragOverContainer ? `drag-over` : ''}`}
 				onDragOver={handleDragOver}
