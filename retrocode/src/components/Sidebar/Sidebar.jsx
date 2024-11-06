@@ -2,17 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaFolder, FaFile, FaFolderOpen, FaEdit, FaTrash } from 'react-icons/fa';
 import './Sidebar.css';
 
-const Sidebar = ({ onItemSelect, selectedItem, onExport }) => {
-	const [fileStructure, setFileStructure] = useState([
-		{
-			id: '1',
-			type: 'folder',
-			name: 'root',
-			isOpen: true,
-			content: '',
-			children: []
-		}
-	]);
+const Sidebar = ({ onItemSelect, selectedItem, onExport, fileStructure, setFileStructure }) => {
 	const [draggedItem, setDraggedItem] = useState(null);
 	const [dragOverItem, setDragOverItem] = useState(null);
 	const [dragOverContainer, setDragOverContainer] = useState(false);
@@ -20,10 +10,24 @@ const Sidebar = ({ onItemSelect, selectedItem, onExport }) => {
 	const [editingItem, setEditingItem] = useState(null);
 	const [hoveredItem, setHoveredItem] = useState(null);
 
-	const handleExportClick = () => {
-		const exportData = 'Exported Data';
-		onExport(exportData);
-	};
+	const generateHierarchyString = (items, level = 0) => {
+        let result = '';
+        const indent = '\t'.repeat(level);
+
+        items.forEach(item => {
+            result += `${indent}${item.type === 'folder' ? '📁' : '📄'} ${item.name}\n`;
+            if (item.children) {
+                result += generateHierarchyString(item.children, level + 1);
+            }
+        });
+
+        return result;
+    };
+
+    const handleExportClick = () => {
+        const hierarchyString = `Project Hierarchy\n${generateHierarchyString(fileStructure)}`;
+        onExport(hierarchyString);
+    };
 
 	const toggleFolder = (id, e) => {
 		e.stopPropagation();
