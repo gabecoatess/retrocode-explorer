@@ -2,10 +2,27 @@ import React from 'react';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
 import './TopBar.css';
 
-const TopBar = ({ onExport }) => {
+const TopBar = ({ onExport, fileStructure }) => {
+	const generateHierarchyWithDescriptionsString = (items, level = 0) => {
+		let result = '';
+		const indent = '\t'.repeat(level);
+
+		items.forEach(item => {
+			result += `${indent}${item.type === 'folder' ? '📁' : '📄'} ${item.name}\n`;
+			if (item.content) {
+				result += `${indent}\t📝 ${item.content}\n`;
+			}
+			if (item.children) {
+				result += generateHierarchyWithDescriptionsString(item.children, level + 1);
+			}
+		});
+
+		return result;
+	};
+
 	const handleExportClick = () => {
-		const exportData = 'Exported Data';
-		onExport(exportData);
+		const hierarchyWithDescriptionsString = `Project Hierarchy\n${generateHierarchyWithDescriptionsString(fileStructure)}`;
+		onExport(hierarchyWithDescriptionsString);
 	};
 
 	return (

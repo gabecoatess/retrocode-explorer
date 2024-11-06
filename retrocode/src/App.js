@@ -8,6 +8,16 @@ import ExportPopup from './components/ExportPopup/ExportPopup';
 function App() {
 	const [showExportPopup, setShowExportPopup] = useState(false);
 	const [exportData, setExportData] = useState('');
+	const [fileStructure, setFileStructure] = useState([
+		{
+			id: '1',
+			type: 'folder',
+			name: 'root',
+			isOpen: true,
+			content: '',
+			children: []
+		}
+	]);
 
 	const handleExport = (data) => {
 		setExportData(data);
@@ -16,8 +26,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<TopBar onExport={handleExport}/>
-			<MainContent onExport={handleExport}/>
+			<TopBar onExport={handleExport} fileStructure={fileStructure}/>
+			<MainContent onExport={handleExport} fileStructure={fileStructure} setFileStructure={setFileStructure}/>
 
 			{showExportPopup && (
 				<ExportPopup
