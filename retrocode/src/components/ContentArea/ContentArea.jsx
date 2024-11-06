@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ContentArea.css';
-import { ReactComponent as FaintIcon } from './faint-icon.svg'; // Pae40
+import { ReactComponent as Logo } from '../../RetroCodeExplorer-icon.svg';
 
 const ContentArea = ({ selectedItem, onContentChange }) => {
     const [content, setContent] = useState('');
@@ -21,7 +21,7 @@ const ContentArea = ({ selectedItem, onContentChange }) => {
     return (
         <div className="content-area">
             <div className="content-wrapper">
-                <FaintIcon className="svg-icon" />
+                <Logo className="svg-icon" />
                 <textarea
                     value={content}
                     onChange={handleChange}
